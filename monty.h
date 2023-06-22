@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#define BUFF_MAX 1024
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -66,7 +68,6 @@ typedef struct global_obj
 {
 	int n;
 	FILE **fp;
-	char **buff_ptr;
 	char ***cmd_ptr;
 	stack_t **stack_ptr;
 } global_obj;

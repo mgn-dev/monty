@@ -1,6 +1,5 @@
 #include "monty.h"
 #include <stdio.h>
-#include <fcntl.h>
 
 /**
  * main - entry point to the monty interpreter.
@@ -11,10 +10,9 @@
  */
 int main(int argc, char *argv[])
 {
-	size_t buff_size  = 0;
-	char *buffer = NULL, **command = { NULL };
+    int line = 0;
+	char buffer[BUFF_MAX], **command = { NULL };
 	FILE *fp;
-	int line = 0;
 	stack_t *head = NULL;
 	void (*execute)(stack_t **stack, unsigned int ln);
 
@@ -33,11 +31,10 @@ int main(int argc, char *argv[])
 	}
 
 	gob.fp = &fp;
-	gob.buff_ptr = &buffer;
 	gob.cmd_ptr = &command;
 	gob.stack_ptr = &head;
 
-	while (getline(&buffer, &buff_size, fp) != -1)
+	while (fgets(buffer, BUFF_MAX, fp) != NULL)
 	{
 		line++;
 		command = parse(buffer);
@@ -47,7 +44,6 @@ int main(int argc, char *argv[])
 	}
 
 	free_dl_list(head);
-	free(buffer);
 	fclose(fp);
 
 	return (0);

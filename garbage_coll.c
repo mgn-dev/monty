@@ -6,11 +6,6 @@
 */
 void garbage_collector(void)
 {
-	if (*gob.buff_ptr != NULL)
-	{
-		free(*gob.buff_ptr);
-	}
-
 	free_2d(*gob.cmd_ptr);
 
 	if (*gob.fp != NULL)
