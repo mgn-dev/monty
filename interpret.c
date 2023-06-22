@@ -38,7 +38,7 @@ void (*interpret(char *ins, char *arg, int l))(stack_t **s, unsigned int l)
 
 	if (instr[i].arg == 1 && (arg == NULL || is_number(arg) == 0))
 	{
-		fprintf(stderr, "L%i: usage: push integer\n", l);
+		fprintf(stdout, "L%i: usage: push integer\n", l);
 		garbage_collector();
 		exit(EXIT_FAILURE);
 	}
