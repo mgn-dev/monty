@@ -72,5 +72,6 @@ void (*interpret(char *ins, int l))(stack_t **s, unsigned int l);
 void push(stack_t **stack, unsigned int ln);
 void pall(stack_t **stack, unsigned int ln);
 void pint(stack_t **stack, unsigned int ln);
+void pop(stack_t **stack, unsigned int ln);
 
 #endif
