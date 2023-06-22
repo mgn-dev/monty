@@ -40,7 +40,8 @@ int main(int argc, char *argv[])
 		command = parse(buffer);
 		if (command[0] != NULL)
 		{
-			execute = interpret(command[0], command[1], line);
+			gob.arg = command[1];
+			execute = interpret(command[0], line);
 			execute(&head, line);
 			free_2d(command);
 		}
@@ -48,6 +49,5 @@ int main(int argc, char *argv[])
 
 	free_dl_list(head);
 	fclose(fp);
-
 	return (0);
 }

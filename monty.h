@@ -40,22 +40,8 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
- * struct instruc - opcode and its function
- * @ins: the opcode
- * @arg: function to handle the opcode
- *
- * Description: opcode and its function
- * for stack, queues, LIFO, FIFO
- */
-typedef struct instruc
-{
-	instruction_t ins;
-	short arg;
-} instruc;
-
-/**
  * struct global_obj - opcode and its function
- * @n: argument given to opcode.
+ * @arg: argument given to opcode.
  * @fp: pointer to FILE pointer
  * @cmd_ptr: pointer to command pointer.
  * @stack_ptr: pointer to stack dllist.
@@ -65,7 +51,7 @@ typedef struct instruc
  */
 typedef struct global_obj
 {
-	int n;
+	char *arg;
 	FILE **fp;
 	char ***cmd_ptr;
 	stack_t **stack_ptr;
@@ -82,7 +68,7 @@ void garbage_collector(void);
 void free_2d(char **grid);
 void free_dl_list(stack_t *head);
 
-void (*interpret(char *ins, char *arg, int l))(stack_t **s, unsigned int l);
+void (*interpret(char *ins, int l))(stack_t **s, unsigned int l);
 void push(stack_t **stack, unsigned int ln);
 void pall(stack_t **stack, unsigned int ln);
 

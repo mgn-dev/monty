@@ -4,24 +4,23 @@
 * interpret - function that selects the correct function to
 * perform the operation asked by the user.
 * @ins: line instruction.
-* @arg: line argument.
 * @l: line number.
 *
 * Return: pointer to corresponding function.
 */
-void (*interpret(char *ins, char *arg, int l))(stack_t **s, unsigned int l)
+void (*interpret(char *ins, int l))(stack_t **s, unsigned int l)
 {
 	int i = 0;
 
-	instruc instr[] = {
-		{{"push", push}, 1},
-		{{"pall", pall}, 0},
-		{{NULL, NULL}, 0}
+	instruction_t instr[] = {
+		{"push", push},
+		{"pall", pall},
+		{NULL, NULL}
 	};
 
-	while (ins != NULL && instr[i].ins.opcode != NULL)
+	while (ins != NULL && instr[i].opcode != NULL)
 	{
-		if (strcmp(ins, instr[i].ins.opcode) == 0)
+		if (strcmp(ins, instr[i].opcode) == 0)
 		{
 			break;
 		}
@@ -29,26 +28,14 @@ void (*interpret(char *ins, char *arg, int l))(stack_t **s, unsigned int l)
 		i++;
 	}
 
-	if (ins != NULL && instr[i].ins.opcode == NULL)
+	if (ins != NULL && instr[i].opcode == NULL)
 	{
 		fprintf(stderr, "L%i: unknown instruction %s\n", l, ins);
 		garbage_collector();
 		exit(EXIT_FAILURE);
 	}
 
-	if (instr[i].arg == 1 && (arg == NULL || is_number(arg) == 0))
-	{
-		fprintf(stderr, "L%i: usage: push integer\n", l);
-		garbage_collector();
-		exit(EXIT_FAILURE);
-	}
-
-	if (instr[i].arg == 1 && arg != NULL)
-	{
-		gob.n = atoi(arg);
-	}
-
-	return (instr[i].ins.f);
+	return (instr[i].f);
 }
 
 
