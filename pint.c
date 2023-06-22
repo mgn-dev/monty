@@ -14,7 +14,11 @@ void pint(stack_t **h, unsigned int ln)
 	temp = *h;
 
 	if (temp == NULL)
-		return;
+	{
+		fprintf(stderr, "L%i: can't pint, stack empty\n", ln);
+		garbage_collector();
+		exit(EXIT_FAILURE);
+	}
 
 	if (temp->prev == NULL)
 	{
