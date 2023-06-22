@@ -15,6 +15,7 @@ void (*interpret(char *ins, int l))(stack_t **s, unsigned int l)
 	instruction_t instr[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL}
 	};
 
