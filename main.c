@@ -38,13 +38,13 @@ int main(int argc, char *argv[])
 	{
 		line++;
 		command = parse(buffer);
-		if (command[0] != NULL)
+		if (command != NULL && command[0] != NULL)
 		{
 			gob.arg = command[1];
 			execute = interpret(command[0], line);
 			execute(&head, line);
-			free_2d(command);
 		}
+		free_2d(command);
 	}
 
 	free_dl_list(head);
