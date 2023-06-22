@@ -17,6 +17,7 @@ void (*interpret(char *ins, int l))(stack_t **s, unsigned int l)
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
+		{"swap", swap},
 		{NULL, NULL}
 	};
 
