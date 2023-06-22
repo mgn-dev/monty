@@ -57,7 +57,6 @@ typedef struct instruc
  * struct global_obj - opcode and its function
  * @n: argument given to opcode.
  * @fp: pointer to FILE pointer
- * @buff_ptr: pointer to get line buffer.
  * @cmd_ptr: pointer to command pointer.
  * @stack_ptr: pointer to stack dllist.
  *
