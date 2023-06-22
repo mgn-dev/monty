@@ -10,7 +10,7 @@
  */
 int main(int argc, char *argv[])
 {
-    int line = 0;
+	int line = 0;
 	char buffer[BUFF_MAX], **command = { NULL };
 	FILE *fp;
 	stack_t *head = NULL;
@@ -38,9 +38,12 @@ int main(int argc, char *argv[])
 	{
 		line++;
 		command = parse(buffer);
-		execute = interpret(command[0], command[1], line);
-		execute(&head, line);
-		free_2d(command);
+		if (command[0] != NULL)
+		{
+			execute = interpret(command[0], command[1], line);
+			execute(&head, line);
+			free_2d(command);
+		}
 	}
 
 	free_dl_list(head);
