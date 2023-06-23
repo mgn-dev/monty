@@ -20,6 +20,7 @@ void (*interpret(char *ins, int l))(stack_t **s, unsigned int l)
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},
+		{"sub", sub},
 		{NULL, NULL}
 	};
 
