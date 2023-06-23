@@ -14,12 +14,6 @@ void pstr(stack_t **h, unsigned int ln)
 
 	temp = *h;
 
-	if (temp == NULL)
-	{
-		fprintf(stdout, "\n");
-		return;
-	}
-
 	while (temp != NULL)
 	{
 		if (temp->n <= 0 || temp->n > 127)
@@ -30,5 +24,11 @@ void pstr(stack_t **h, unsigned int ln)
 
 		fprintf(stdout, "%c", temp->n);
 		temp = temp->next;
+	}
+
+	if (temp == NULL)
+	{
+		fprintf(stdout, "\n");
+		return;
 	}
 }
