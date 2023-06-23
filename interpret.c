@@ -25,6 +25,7 @@ void (*interpret(char *ins, int l))(stack_t **s, unsigned int l)
 		{"mul", mul},
 		{"mod", mod},
 		{"pchar", pchar},
+		{"pstr", pstr},
 		{NULL, NULL}
 	};
 
