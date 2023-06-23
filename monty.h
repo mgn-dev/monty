@@ -82,5 +82,6 @@ void mul(stack_t **stack, unsigned int ln);
 void mod(stack_t **stack, unsigned int ln);
 void pchar(stack_t **stack, unsigned int ln);
 void pstr(stack_t **stack, unsigned int ln);
+void rotl(stack_t **stack, unsigned int ln);
 
 #endif
