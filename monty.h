@@ -8,6 +8,8 @@
 #include <string.h>
 
 #define BUFF_MAX 1024
+#define QUEUE 1
+#define STACK 0
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -41,6 +43,7 @@ typedef struct instruction_s
 
 /**
  * struct global_obj - opcode and its function
+ * @mode: argument given to opcode.
  * @arg: argument given to opcode.
  * @fp: pointer to FILE pointer
  * @cmd_ptr: pointer to command pointer.
@@ -51,6 +54,7 @@ typedef struct instruction_s
  */
 typedef struct global_obj
 {
+	int mode;
 	char *arg;
 	FILE **fp;
 	char ***cmd_ptr;
@@ -84,5 +88,9 @@ void pchar(stack_t **stack, unsigned int ln);
 void pstr(stack_t **stack, unsigned int ln);
 void rotl(stack_t **stack, unsigned int ln);
 void rotr(stack_t **stack, unsigned int ln);
+void queue(stack_t **stack, unsigned int ln);
+void stack(stack_t **stack, unsigned int ln);
+void add_to_head(stack_t **head);
+void add_to_tail(stack_t **head);
 
 #endif
