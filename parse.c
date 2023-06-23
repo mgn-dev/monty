@@ -14,6 +14,9 @@ char **parse(char *in_str)
 
 	token_arr = ext_tokens(in_str, delimiters);
 
+	if (token_arr[0][0] == '#')
+		return (NULL);
+
 	if (token_arr == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
