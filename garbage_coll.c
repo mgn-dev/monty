@@ -28,12 +28,16 @@ void free_2d(char **grid)
 {
 	int i = 0, len = 0;
 
+	if (grid == NULL)
+		return;
+
 	while (grid[i++] != NULL)
 		len++;
 
 	for (i = 0; i < len; i++)
 	{
-		free(grid[i]);
+		if (grid[i] != NULL)
+			free(grid[i]);
 	}
 
 	free(grid);
