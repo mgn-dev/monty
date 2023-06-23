@@ -22,6 +22,7 @@ void (*interpret(char *ins, int l))(stack_t **s, unsigned int l)
 		{"nop", nop},
 		{"sub", sub},
 		{"div", divi},
+		{"mul", mul},
 		{NULL, NULL}
 	};
 

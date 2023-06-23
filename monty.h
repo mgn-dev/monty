@@ -78,5 +78,6 @@ void add(stack_t **stack, unsigned int ln);
 void nop(stack_t **stack, unsigned int ln);
 void sub(stack_t **stack, unsigned int ln);
 void divi(stack_t **stack, unsigned int ln);
+void mul(stack_t **stack, unsigned int ln);
 
 #endif
