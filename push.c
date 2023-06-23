@@ -9,8 +9,6 @@
 */
 void push(stack_t **head, unsigned int ln)
 {
-	stack_t *new_node = NULL;
-
 	if (gob.arg == NULL || is_number(gob.arg) == 0)
 	{
 		fprintf(stderr, "L%i: usage: push integer\n", ln);
@@ -18,29 +16,12 @@ void push(stack_t **head, unsigned int ln)
 		exit(EXIT_FAILURE);
 	}
 
-	if (*head == NULL)
+	if (gob.mode == QUEUE)
 	{
-		new_node = malloc(sizeof(stack_t));
-
-		if (new_node == NULL)
-			return;
-
-		new_node->n = atoi(gob.arg);
-		new_node->next = NULL;
-		new_node->prev = NULL;
-		*head = new_node;
+		add_to_tail(head);
 	}
 	else
 	{
-		new_node = malloc(sizeof(stack_t));
-
-		if (new_node == NULL)
-			return;
-
-		new_node->n = atoi(gob.arg);
-		new_node->next = *head;
-		new_node->prev = NULL;
-		(*head)->prev = new_node;
-		*head = new_node;
+		add_to_head(head);
 	}
 }
