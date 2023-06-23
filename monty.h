@@ -80,5 +80,6 @@ void sub(stack_t **stack, unsigned int ln);
 void divi(stack_t **stack, unsigned int ln);
 void mul(stack_t **stack, unsigned int ln);
 void mod(stack_t **stack, unsigned int ln);
+void pchar(stack_t **stack, unsigned int ln);
 
 #endif
