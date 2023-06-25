@@ -67,6 +67,7 @@ int count_tokens(const char *str, const char *dlm);
 int is_number(char *str);
 int _strchr(const char *str, const char c);
 char **ext_tokens(const char *str, const char *dlm);
+void extt_h(const char *str, char **tarr, int *tsze, int *j, int *r, int *q);
 char **parse(char *in_str);
 void garbage_collector(void);
 void free_2d(char **grid);

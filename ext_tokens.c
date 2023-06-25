@@ -11,7 +11,12 @@
 int count_tokens(const char *str, const char *dlm)
 {
 	int i = 0, count = 0;
-	short istoken = _strchr(dlm, str[i]) == 0 ? 0 : 1;
+	short istoken;
+
+	if (str == NULL || dlm == NULL)
+		return (0);
+
+	istoken = _strchr(dlm, str[i]) == 0 ? 0 : 1;
 
 	while (str[i] != '\0')
 	{
@@ -65,13 +70,17 @@ int _strchr(const char *str, const char c)
 char **ext_tokens(const char *str, const char *dlm)
 {
 	char **token_arr;
-	int i = 0, j = 0;
+	int i = 0, j = 0, count_tok = count_tokens(str, dlm);
 
-	if (str == NULL || dlm == NULL)
+	if (str == NULL || dlm == NULL || count_tok == 0)
 		return (NULL);
-	token_arr = malloc(sizeof(char *) * (count_tokens(str, dlm) + 1));
+	token_arr = malloc(sizeof(char *) * (count_tok + 1));
 	if (token_arr == NULL)
-		return (NULL);
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		garbage_collector();
+		exit(EXIT_FAILURE);
+	}
 
 	while (str[i] != '\0')
 	{
@@ -82,19 +91,7 @@ char **ext_tokens(const char *str, const char *dlm)
 			while (str[p] != '\0' && _strchr(dlm, str[p]) == 0)
 				p++;
 			token_size = p - i;
-			if (token_size > 0)
-			{
-				token_arr[j] = malloc(token_size + 1);
-				if (token_arr[j] == NULL)
-				{
-					free_2d(token_arr);
-					return (NULL);
-				}
-				while (r < token_size)
-					token_arr[j][r++] = str[q++];
-				token_arr[j][r] = '\0';
-				j++;
-			}
+			extt_h(str, token_arr, &token_size, &j, &r, &q);
 			i = p;
 		}
 		else
@@ -102,4 +99,39 @@ char **ext_tokens(const char *str, const char *dlm)
 	}
 	token_arr[j] = NULL;
 	return (token_arr);
+}
+
+/**
+ * extt_h - helper function to ext_tokens function,
+ * handles it's inner workings.
+ * @str: pointer to str input.
+ * @tarr: pointer to token_arr.
+ * @tsize: pointer to token_size.
+ * @j: pointer to j.
+ * @r: pointer to r.
+ * @q: pointer to q.
+ *
+*/
+void extt_h(const char *str, char **tarr, int *tsize, int *j, int *r, int *q)
+{
+	if (*tsize > 0)
+	{
+		(tarr[*j]) = malloc((*tsize) + 1);
+		if ((tarr[*j]) == NULL)
+		{
+			free_2d(tarr);
+			fprintf(stderr, "Error: malloc failed\n");
+			garbage_collector();
+			exit(EXIT_FAILURE);
+		}
+		while (*r < *tsize)
+		{
+			(tarr[*j][*r]) = (str[*q]);
+			(*r)++;
+			(*q)++;
+		}
+
+		(tarr[*j][*r]) = '\0';
+		(*j)++;
+	}
 }
